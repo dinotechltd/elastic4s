@@ -5,9 +5,7 @@
                 "order": "desc",
                 "missing": "no-singer",
                 "mode": "avg",
-                "nested": {
-                    "path": "nest"
-                }
+                "nested_path": "nest"
             }
         }
     ]

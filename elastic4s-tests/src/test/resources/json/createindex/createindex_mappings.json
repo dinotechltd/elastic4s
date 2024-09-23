@@ -1,35 +1,63 @@
 {
     "mappings": {
-        "_all": {
-            "enabled": true
+        "tweets": {
+            "_all": {
+                "enabled": false
+            },
+            "numeric_detection": true,
+            "_boost": {
+                "name": "myboost",
+                "null_value": 1.2
+            },
+            "_size": {
+                "enabled": true
+            },
+            "properties": {
+                "name": {
+                    "type": "geo_point"
+                },
+                "content": {
+                    "type": "date",
+                    "null_value": "no content"
+                }
+            },
+            "_meta": {
+                "class": "com.dinotech.User"
+            }
         },
-        "dynamic_date_formats": [
-            "mm/yyyy",
-            "dd-MM-yyyy"
-        ],
-        "date_detection": true,
-        "_analyzer": {
-            "path": "somefield"
-        },
-        "properties": {
-            "name": {
-                "type": "ip",
-                "boost": 1.0
+        "users": {
+            "_all": {
+                "enabled": true
             },
-            "location": {
-                "type": "integer",
-                "null_value": 0
+            "dynamic_date_formats": [
+                "mm/yyyy",
+                "dd-MM-yyyy"
+            ],
+            "date_detection": true,
+            "_analyzer": {
+                "path": "somefield"
             },
-            "email": {
-                "type": "binary"
-            },
-            "age": {
-                "type": "float"
-            },
-            "area": {
-                "type": "geo_shape",
-                "tree": "quadtree",
-                "precision": "1m"
+            "properties": {
+                "name": {
+                    "type": "ip",
+                    "boost": 1.0,
+                    "null_value": "127.0.0.1"
+                },
+                "location": {
+                    "type": "integer",
+                    "null_value": 0
+                },
+                "email": {
+                    "type": "binary"
+                },
+                "age": {
+                    "type": "float"
+                },
+                "area": {
+                    "type": "geo_shape",
+                    "precision": "1m",
+                    "tree": "quadtree"
+                }
             }
         }
     }

@@ -1,1 +1,5 @@
-addSbtPlugin("com.github.sbt" % "sbt-ci-release" % "1.6.1")
+resolvers += Classpaths.sbtPluginReleases
+
+addSbtPlugin("com.jsuereth" % "sbt-pgp" % "1.1.0")
+
+addSbtPlugin("com.github.gseitz" % "sbt-release" % "1.0.3")

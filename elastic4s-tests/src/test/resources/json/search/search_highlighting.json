@@ -4,8 +4,6 @@
         "boundary_max_scan": 4,
         "encoder": "html",
         "order": "score",
-        "max_analyzed_offset": 900000,
-        "tags_schema": "styled",
         "post_tags": [
             "</b>"
         ],

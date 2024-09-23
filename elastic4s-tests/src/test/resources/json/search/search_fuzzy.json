@@ -5,7 +5,6 @@
                 "value": "will",
                 "max_expansions": 10,
                 "prefix_length": 10,
-                "transpositions": true,
                 "boost": 4.0
             }
         }

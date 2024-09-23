@@ -1,0 +1,23 @@
+package com.dinotech.elastic4s.http.search.queries.span
+
+import com.dinotech.elastic4s.http.search.queries.QueryBuilderFn
+import com.dinotech.elastic4s.json.{XContentBuilder, XContentFactory}
+import com.dinotech.elastic4s.searches.queries.span.SpanOrQuery
+
+object SpanOrQueryBodyFn {
+  def apply(q: SpanOrQuery): XContentBuilder = {
+    val builder = XContentFactory.jsonBuilder()
+    builder.startObject("span_or")
+    builder.startArray("clauses")
+    q.clauses.foreach { clause =>
+      builder.rawValue(QueryBuilderFn(clause))
+    }
+    builder.endArray()
+
+    q.boost.foreach(builder.field("boost", _))
+    q.queryName.foreach(builder.field("_name", _))
+
+    builder.endObject()
+    builder.endObject()
+  }
+}

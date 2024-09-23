@@ -3,7 +3,6 @@
 .idea
 *.iml
 pom.xml.versionsBackup
-.hydra
 
 # sbt specific
 dist/*
@@ -27,6 +26,6 @@ esdata
 # Sublime Text specific
 *.sublime-project
 *.sublime-workspace
-*.metals
-*.bloop
-.bsp
+
+# Generated via microsite
+/docs/src/main/tut/index.md

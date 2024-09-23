@@ -2,7 +2,7 @@
     "aggs": {
         "days": {
             "date_histogram": {
-                "calendar_interval": "1d",
+                "interval": "1d",
                 "field": "date"
             },
             "aggs": {
