@@ -2,3 +2,6 @@
 -J-XX:MaxMetaspaceSize=1G
 -J-XX:MaxPermSize=1G
 -J-XX:+CMSClassUnloadingEnabled
+-Dsbt.override.build.repos=true
+-Dsbt.boot.credentials=.sbt/.credentials
+-Dsbt.gigahorse=false

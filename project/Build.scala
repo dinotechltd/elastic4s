@@ -1,5 +1,3 @@
-import com.typesafe.sbt.SbtPgp
-import com.typesafe.sbt.pgp.PgpKeys
 import sbt._
 import sbt.plugins.JvmPlugin
 import sbt.Keys._
@@ -32,22 +30,22 @@ object Build extends AutoPlugin {
 
   import autoImport._
 
+  def dinoRepo(isSnapshot: Boolean): Option[MavenRepository] = {
+    if (isSnapshot)
+      Some("Dino artifactory" at "https://artifactory.dinotech.io/artifactory/dino-artifacts;build.timestamp=" + new java.util.Date().getTime)
+    else Some("Dino artifactory" at "https://artifactory.dinotech.io/artifactory/dino-artifacts")
+  }
+
   override def projectSettings = Seq(
     organization := org,
     scalaVersion := "2.13.0",
     crossScalaVersions := Seq("2.13.0", "2.11.12", "2.12.8"),
-    publishMavenStyle := true,
-    resolvers += Resolver.mavenLocal,
-    resolvers += Resolver.url("https://artifacts.elastic.co/maven"),
+    resolvers += "Artifactory Realm" at "https://artifactory.dinotech.io/artifactory/dino-artifacts/",
     javaOptions ++= Seq("-Xms512M", "-Xmx2048M", "-XX:MaxPermSize=2048M", "-XX:+CMSClassUnloadingEnabled"),
     publishArtifact in Test := false,
     fork in Test:= false,
     parallelExecution in ThisBuild := false,
-    SbtPgp.autoImport.useGpg := true,
-    SbtPgp.autoImport.useGpgAgent := true,
-    sbtrelease.ReleasePlugin.autoImport.releasePublishArtifactsAction := PgpKeys.publishSigned.value,
-    sbtrelease.ReleasePlugin.autoImport.releaseCrossBuild := true,
-    credentials += Credentials(Path.userHome / ".sbt" / "pgp.credentials"),
+    credentials += Credentials(baseDirectory.value / ".sbt" / ".credentials"),
     scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8"),
     javacOptions := Seq("-source", "1.8", "-target", "1.8"),
     libraryDependencies ++= Seq(
@@ -56,13 +54,7 @@ object Build extends AutoPlugin {
       "org.mockito"       % "mockito-all" % MockitoVersion % "test",
       "org.scalatest"     %% "scalatest"  % ScalatestVersion % "test"
     ),
-    publishTo := {
-      val nexus = "https://oss.sonatype.org/"
-      if (version.value.trim.endsWith("SNAPSHOT"))
-        Some("snapshots" at nexus + "content/repositories/snapshots")
-      else
-        Some("releases" at nexus + "service/local/staging/deploy/maven2")
-    },
+    publishTo := dinoRepo(isSnapshot.value),
     pomExtra :=
       <url>https://github.com/dinotech/elastic4s</url>
         <licenses>

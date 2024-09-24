@@ -1,0 +1,25 @@
+[repositories]
+local
+local-preloaded-ivy: file:///${sbt.preloaded-${sbt.global.base-${user.home}/.sbt}/preloaded/}, [organization]/[module]/[revision]/[type]s/[artifact](-[classifier]).[ext]
+local-preloaded: file:///${sbt.preloaded-${sbt.global.base-${user.home}/.sbt}/preloaded/}
+
+my-ivy-proxy-releases-0: https://artifactory.dinotech.io/artifactory/sbt-maven-remote/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
+my-maven-proxy-releases-0: https://artifactory.dinotech.io/artifactory/sbt-maven-remote/
+
+my-ivy-proxy-releases-2: https://artifactory.dinotech.io/artifactory/dino-artifacts/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
+my-maven-proxy-releases-2: https://artifactory.dinotech.io/artifactory/dino-artifacts/
+
+my-ivy-proxy-releases-1: https://artifactory.dinotech.io/artifactory/dino-sbt-all/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
+my-maven-proxy-releases-1: https://artifactory.dinotech.io/artifactory/dino-sbt-all/
+
+typesafe-ivy-proxy-releases: https://artifactory.dinotech.io/artifactory/typesafe-ivy-releases/, [organization]/[module]/[revision]/[type]s/[artifact](-[classifier]).[ext], bootOnly
+
+sbt-ivy-snapshots: https://repo.scala-sbt.org/scalasbt/ivy-snapshots/, [organization]/[module]/[revision]/[type]s/[artifact](-[classifier]).[ext], bootOnly
+
+sbt-plugins: https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext], bootOnly
+
+enliven-ivy: https://artifactory.dinotech.io/artifactory/enliven/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
+enliven-maven: https://artifactory.dinotech.io/artifactory/enliven/
+
+my-ivy-proxy-releases-3: https://artifactory.dinotech.io/artifactory/sbt-remote-sonatype-central/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]
+my-maven-proxy-releases-3: https://artifactory.dinotech.io/artifactory/sbt-remote-sonatype-central/
