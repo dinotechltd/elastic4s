@@ -12,6 +12,7 @@ lazy val root = Project("elastic4s", file("."))
     tests,
     testkit,
     circe,
+    clientesjava,
     jackson,
     json4s,
     playjson,
@@ -126,6 +127,19 @@ lazy val circe = Project("elastic4s-circe", file("elastic4s-circe"))
     libraryDependencies += "io.circe" %% "circe-parser"  % CirceVersion
   )
   .dependsOn(core)
+
+lazy val clientesjava = (project in file("elastic4s-client-esjava"))
+  .settings(
+    name := "elastic4s-client-esjava",
+    libraryDependencies ++= Seq(
+      "org.elasticsearch.client" % "elasticsearch-rest-client" % ElasticsearchVersion,
+      "org.apache.logging.log4j" % "log4j-api" % Log4jVersion % "test",
+      "com.fasterxml.jackson.core" % "jackson-core" % JacksonVersion,
+      "com.fasterxml.jackson.core" % "jackson-databind" % JacksonVersion,
+      "com.fasterxml.jackson.module" %% "jackson-module-scala" % JacksonVersion exclude("org.scala-lang", "scala-library")
+    )
+  ).dependsOn(core, http)
+
 
 lazy val json4s = Project("elastic4s-json4s", file("elastic4s-json4s"))
   .settings(
