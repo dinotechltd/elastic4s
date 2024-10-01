@@ -183,7 +183,7 @@ lazy val akka = Project("elastic4s-akka", file("elastic4s-akka"))
 
 lazy val pekko = Project("elastic4s-pekko", file("elastic4s-pekko"))
   .settings(
-    name := "elastic4s-akka",
+    name := "elastic4s-pekko",
     libraryDependencies += "org.apache.pekko" %% "pekko-http" % PekkoHttpVersion,
     libraryDependencies += "org.apache.pekko" %% "pekko-stream" % PekkoVersion,
     libraryDependencies += "org.scalamock" %% "scalamock" % ScalamockVersion % "test"
