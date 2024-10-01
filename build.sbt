@@ -20,6 +20,7 @@ lazy val root = Project("elastic4s", file("."))
     aws,
     sttp,
     akka,
+    pekko,
     httpstreams,
     embedded
   )
@@ -176,6 +177,15 @@ lazy val akka = Project("elastic4s-akka", file("elastic4s-akka"))
     name := "elastic4s-akka",
     libraryDependencies += "com.typesafe.akka" %% "akka-http" % AkkaHttpVersion,
     libraryDependencies += "com.typesafe.akka" %% "akka-stream" % AkkaVersion,
+    libraryDependencies += "org.scalamock" %% "scalamock" % ScalamockVersion % "test"
+  )
+  .dependsOn(core, http, testkit % "test")
+
+lazy val pekko = Project("elastic4s-pekko", file("elastic4s-pekko"))
+  .settings(
+    name := "elastic4s-akka",
+    libraryDependencies += "org.apache.pekko" %% "pekko-http" % PekkoHttpVersion,
+    libraryDependencies += "org.apache.pekko" %% "pekko-stream" % PekkoVersion,
     libraryDependencies += "org.scalamock" %% "scalamock" % ScalamockVersion % "test"
   )
   .dependsOn(core, http, testkit % "test")

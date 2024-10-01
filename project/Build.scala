@@ -11,6 +11,8 @@ object Build extends AutoPlugin {
     val org                    = "com.dinotech.elastic4s"
     val AkkaVersion            = "2.5.23"
     val AkkaHttpVersion        = "10.1.9"
+    val PekkoVersion           = "1.0.2"
+    val PekkoHttpVersion       = "1.0.0"
     val CatsVersion            = "2.0.0"
     val CirceVersion           = "0.12.0-M3"
     val CommonsIoVersion       = "2.4"
