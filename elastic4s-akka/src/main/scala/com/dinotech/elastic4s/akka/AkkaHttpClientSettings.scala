@@ -29,7 +29,7 @@ object AkkaHttpClientSettings {
     (Try(cfg.getStringList("hosts")), Try(cfg.getString("host"))) match {
       case (Success(hosts), _) if hosts.asScala.nonEmpty => hosts.asScala.map(removeProtocol).toSeq
       case (_, Success(host)) => Seq(removeProtocol(host))
-      case _ => throw new IllegalArgumentException("'host' or 'hosts' property not specified")
+      case _ => Seq.empty
     }
 
   private def hasProtocolDefined(uri: String): Boolean = uri.startsWith("http://") || uri.startsWith("https://")

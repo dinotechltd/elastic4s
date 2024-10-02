@@ -69,5 +69,12 @@ class AkkaHttpClientSettingsTest extends WordSpec with Matchers {
       settings.maxRetryTimeout shouldBe 30.seconds
     }
 
+    "get hosts when directly is set it up" in {
+      val settings = AkkaHttpClientSettings(List(s"${sys.env.getOrElse("ES_HOST", "127.0.0.1")}:${sys.env.getOrElse("ES_PORT", "9200")}"))
+      settings.hosts.headOption shouldBe defined
+      settings.hosts.head shouldBe "127.0.0.1:9200"
+      settings.https shouldBe false
+    }
+
   }
 }
