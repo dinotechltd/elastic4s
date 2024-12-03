@@ -1,4 +1,3 @@
-import Build.autoImport.PekkoVersion
 import sbt.Credentials
 
 lazy val root = Project("elastic4s", file("."))
