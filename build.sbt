@@ -22,6 +22,7 @@ lazy val root = Project("elastic4s", file("."))
     akka,
     pekko,
     httpstreams,
+    httpstreamsPekko,
     embedded
   )
 
@@ -105,6 +106,15 @@ lazy val httpstreams = Project("elastic4s-http-streams", file("elastic4s-http-st
   .settings(
     name := "elastic4s-http-streams",
     libraryDependencies += "com.typesafe.akka"   %% "akka-actor"          % AkkaVersion,
+    libraryDependencies += "org.reactivestreams" % "reactive-streams"     % ReactiveStreamsVersion,
+    libraryDependencies += "org.reactivestreams" % "reactive-streams-tck" % ReactiveStreamsVersion % "test"
+  )
+  .dependsOn(http, testkit % "test", jackson % "test")
+
+lazy val httpstreamsPekko = Project("elastic4s-http-streams-pekko", file("elastic4s-http-streams-pekko"))
+  .settings(
+    name := "elastic4s-http-streams-pekko",
+    libraryDependencies += "org.apache.pekko"    %% "pekko-actor"         % PekkoVersion,
     libraryDependencies += "org.reactivestreams" % "reactive-streams"     % ReactiveStreamsVersion,
     libraryDependencies += "org.reactivestreams" % "reactive-streams-tck" % ReactiveStreamsVersion % "test"
   )
