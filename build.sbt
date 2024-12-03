@@ -22,6 +22,7 @@ lazy val root = Project("elastic4s", file("."))
     akka,
     pekko,
     httpstreams,
+    httpstreamsPekko,
     embedded
   )
 
